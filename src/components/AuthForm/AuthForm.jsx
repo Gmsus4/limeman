@@ -20,7 +20,7 @@ export const AuthForm = () => {
 
     return (
         <>
-            <Box border={"1px solid green"} borderRadius={12} padding={5}>
+            <Box border={"1px solid grey"} borderRadius={12} padding={5}>
                 <VStack>
                     <Image h={24} cursor={"pointer"} alt="LimemanLogo"
                         src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058636/Logos/logoOneX_edsiee.png"
@@ -47,7 +47,7 @@ export const AuthForm = () => {
                     {/* ------------------------  OR TEXT ----------------------------*/}
                     <Flex alignItems={"center"} justifyContent={"center"} my={4} gap={1} w={"full"}>
                         <Box flex={2} height={"1px"} bg={"gray.400"}/>
-                        <Text mx={1} color={"dark"}>OR</Text>
+                        <Text mx={1} color={"white"}>OR</Text>
                         <Box flex={2} height={"1px"} bg={"gray.400"}/>
                     </Flex>
 
@@ -60,7 +60,7 @@ export const AuthForm = () => {
                 </VStack>
             </Box>
 
-            <Box border={"1px solid green"} borderRadius={12} padding={5}>
+            <Box border={"1px solid grey"} borderRadius={12} padding={5}>
             <Flex alignItems={"center"} justifyContent={"center"}>
                 <Box mx={2} fontSize={14}>
                     {isLogin ? "Don't have an account" : "Already have an account"}

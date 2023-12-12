@@ -9,19 +9,17 @@ import { mode } from '@chakra-ui/theme-tools'
 import { BrowserRouter } from 'react-router-dom'
 
 const styles = {
-  global: (props) => ({
-    body: {
-      fontFamily: 'body',
-      bg: mode('white', 'gray.800')(props), //Background - El primero es el light y el segundo es el dark
-      color: mode('gray.800', 'whiteAlpha.900')(props),
-      lineHeight: 'base',
-    }
-  })
-}
+	global: (props) => ({
+		body: {
+			bg: mode("gray.100", "#000")(props),
+			color: mode("gray.800", "whiteAlpha.900")(props),
+		},
+	}),
+};
 
 const config = {
-  initialColorMode: 'light',
-  //initialColorMode: 'dark',
+  //initialColorMode: 'light',
+  initialColorMode: 'dark',
   useSystemColorMode: false,
 }
 
