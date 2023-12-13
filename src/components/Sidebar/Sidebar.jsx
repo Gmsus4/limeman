@@ -44,7 +44,7 @@ export const Sidebar = () => {
             <Link to={"/"} as={RouterLink} pl={2} display={{base: "none", md: "block"}} cursor={"pointer"}>
                 <Image src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058306/Logos/logoSuccessWhite_i7rbyx.png"/>
             </Link>
-            <Link alignItems={"center"} to={"/"} as={RouterLink} pl={2} display={{base: "block", md: "none"}}
+            <Link pl={0} alignItems={"center"} to={"/"} as={RouterLink} display={{base: "block", md: "none"}}
             borderRadius={6}
             _hover={{
                 bg: "green"
