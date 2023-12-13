@@ -24,7 +24,7 @@ export const Sidebar = () => {
             text: "Create",
         },
         {
-            icon: <Avatar size={"sm"} name="Fernando Gomez" src="/google.png"/>,
+            icon: <Avatar size={"sm"} name="Fernando Gomez" src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg"/>,
             text: "Profile",
             link: "/fernandog"
         },
