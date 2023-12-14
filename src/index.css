@@ -1,4 +1,3 @@
-
 body {
     --sb-track-color: #070808;
     --sb-thumb-color: #a1a1a1;
@@ -20,4 +19,9 @@ body {
 ::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
     border-radius: 10px;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
 }
