@@ -35,7 +35,6 @@ export const PageLayout = ({children}) => {
     )
 }
 
-
 const PageLayoutSpinner = () => {
     return(
         <Flex flexDir={"column"} h={"100vh"} alignItems={"center"} justifyContent={'center'} >
