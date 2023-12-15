@@ -7,7 +7,7 @@ import { Navbar } from "../../components/Navbar/Navbar";
 
 export const PageLayout = ({children}) => {
     const {pathname} = useLocation();
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const canRenderSidebar = pathname !== '/auth' && user;
     const canRenderNavbar = !user && !loading && pathname !== '/auth'; //Solo si el usuario no esta autenticado, si la ruta no apunta al auth
 
@@ -15,7 +15,7 @@ export const PageLayout = ({children}) => {
     if(checkingUserIsAuth) return <PageLayoutSpinner />
 
     return (
-        <Flex flexDir={canRenderNavbar ? "column" : "row"}>
+        <Flex flexDir={canRenderNavbar ? "column" : "row"}> 
             {/* SIDEBAR ON THE LEFT */}
 
             {canRenderSidebar ? ( //Si el pathname es distinto al auth entonces muestra el componente del sidebar
