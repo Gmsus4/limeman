@@ -6,48 +6,48 @@ import { useAuthStore } from "../../store/authStore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const GoogleAuth = ({prefix}) => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const showToast = useShowToast();
-  const loginUser = useAuthStore(state => state.login);
+  const [signInWithGoogle, , , error] = useSignInWithGoogle(auth);
+	const showToast = useShowToast();
+	const loginUser = useAuthStore((state) => state.login);
 
-  const handleGoogleAuth = async() => {
-    try {
-      const newUser = await signInWithGoogle();
-      if(!newUser && error){
-        showToast('error', error.message, 'error')
-      }
-      const userRef = doc(firestore, 'users', newUser.user.uid);
-      const userSnap = await getDoc(userRef);
+	const handleGoogleAuth = async () => {
+		try {
+			const newUser = await signInWithGoogle();
+			if (!newUser && error) {
+				showToast("Error", error.message, "error");
+				return;
+			}
+			const userRef = doc(firestore, "users", newUser.user.uid);
+			const userSnap = await getDoc(userRef);
 
-      if(userSnap.exists){
-        //Login
-        const userDoc = userSnap.data();
-        localStorage.setItem('user-info', JSON.stringify(userDoc));
-        loginUser(userDoc);
-      } else{
-        //Signup
-        //TODO: PUEDE SURGIR UN PROBLEMA A LA HORA DE QUE SE REGISTREN LOS DATOS Y TENGAN EL MISMO USERNAME
-        const userDoc = {
-          uid: newUser.user.uid,
-          email: newUser.user.email,
-          username: newUser.user.email.split('@')[0],
-          fullName: newUser.user.displayName,
-          bio: "",
-          profilePictureURL: newUser.user.photoURL,
-          followers: [],
-          following: [],
-          posts: [],
-          createdAt: Date.now()
-        }
-        await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
-        localStorage.setItem("user-info", JSON.stringify(userDoc));
-        loginUser(userDoc);
-      }
-
-    } catch (error) {
-        showToast('error', error.message, 'error')
-    }
-  }
+			if (userSnap.exists()) {
+				// login
+				const userDoc = userSnap.data();
+				localStorage.setItem("user-info", JSON.stringify(userDoc));
+				loginUser(userDoc);
+			} else {
+				// signup
+        const userName = `${newUser.user.email.split("@")[0].replace(/[^\w\s]/gi, '')}${newUser.user.uid.substring(0, 4)}`;
+				const userDoc = {
+					uid: newUser.user.uid,
+					email: newUser.user.email,
+					username: userName,
+					fullName: newUser.user.displayName,
+					bio: "",
+					profilePicURL: newUser.user.photoURL,
+					followers: [],
+					following: [],
+					posts: [],
+					createdAt: Date.now(),
+				};
+				await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
+				localStorage.setItem("user-info", JSON.stringify(userDoc));
+				loginUser(userDoc);
+			}
+		} catch (error) {
+			showToast("Error", error.message, "error");
+		}
+	};
 
   return (
     <Flex alignItems={"center"} justifyContent={"center"} cursor={"pointer"} onClick={handleGoogleAuth}>
