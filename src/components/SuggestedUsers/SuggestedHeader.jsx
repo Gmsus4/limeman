@@ -1,26 +1,38 @@
-import { Avatar, Flex, Link, Text } from "@chakra-ui/react"
-import { Link as RouterLink } from "react-router-dom"
+import { Avatar, Button, Flex, Text } from "@chakra-ui/react"
+import { useLogout } from "../../hooks/useLogout"
+import { useAuthStore } from "../../store/authStore";
+import { Link } from "react-router-dom";
 
 export const SuggestedHeader = () => {
-  return (
-    <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
-        <Flex alignItems={"center"} gap={2}>
-            <Avatar name="As a Programmer" size={"md"} src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg"/> {/* size={"md"} */}
-            <Text fontSize={12} fontWeight={"bold"}>
-                fergm_
-            </Text>
+   const {handleLogout, isLogginOut} = useLogout();
+   const authUser = useAuthStore(state => state.user);
+   if (!authUser) return null;
+
+    return (
+        <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
+            <Flex alignItems={"center"} gap={2}>
+                <Link to={`${authUser.username}`}>
+                    <Avatar name={authUser.fullName} size={"md"} src={authUser.profilePic}/> {/* size={"md"} */}
+                </Link>
+                <Link to={`${authUser.username}`}>
+                    <Text fontSize={12} fontWeight={"bold"}>
+                        {authUser.username}
+                    </Text>
+                </Link>
+            </Flex>
+            <Button
+                size={"xs"}
+                variant={"ghost"}
+                _hover={{background: "transparent"}}
+                fontSize={14}
+                fontWeight={"medium"}
+                color={"blue.400"}
+                onClick={handleLogout}
+                isLoading={isLogginOut}
+                cursor={"pointer"}
+            >
+                Logout
+            </Button>
         </Flex>
-        <Link
-            as={RouterLink}
-            to={"/auth"}
-            fontSize={14}
-            fontWeight={"medium"}
-            color={"blue.400"}
-            style={{textDecoration: "none"}}
-            cursor={"pointer"}
-        >
-            Log out
-        </Link>
-    </Flex>
-  )
+    )
 }
