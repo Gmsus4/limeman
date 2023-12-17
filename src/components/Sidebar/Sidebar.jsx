@@ -1,35 +1,10 @@
-import { Avatar, Box, Button, Flex, Image, Link, Tooltip } from "@chakra-ui/react"
+import { Box, Button, Flex, Image, Link, Tooltip } from "@chakra-ui/react"
 import { Link as RouterLink } from "react-router-dom"
-import { CreatePostLogo, NotificationsLogo, SearchLogo } from "../../assets/constants"
-import { AiFillHome } from "react-icons/ai";
-import { BiLogOut } from "react-icons/bi";
 import { useLogout } from "../../hooks/useLogout";
+import { SidebarItems } from "./SidebarItems";
+import { BiLogOut } from "react-icons/bi";
 
 export const Sidebar = () => {
-    const sidebarItems = [
-        {
-            icon: <AiFillHome size={25} />,
-            text: "Home",
-            link: "/"
-        },
-        {
-            icon: <SearchLogo/>,
-            text: "Search",
-        },
-        {
-            icon: <NotificationsLogo/>,
-            text: "Notifications",
-        },
-        {
-            icon: <CreatePostLogo/>,
-            text: "Create",
-        },
-        {
-            icon: <Avatar size={"sm"} name="Fernando Gomez" src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg"/>,
-            text: "Profile",
-            link: "/fernandog"
-        },
-    ]
   const { handleLogout, isLogginOut } = useLogout();
 
   return (
@@ -57,35 +32,7 @@ export const Sidebar = () => {
                 <Image src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058636/Logos/logoOneX_edsiee.png"/>
             </Link>
             <Flex direction={"column"} gap={5} cursor={"pointer"}>
-                {sidebarItems.map((item, index) => (
-                    <Tooltip 
-                        key={index}
-                        hasArrow
-                        label={item.text}
-                        placement="right"
-                        ml={1}
-                        openDelay={500}
-                        display={{base: "block", md: "none"}}
-                    >
-                        <Link 
-                            display={"flex"}
-                            to={item.link || null}
-                            as={RouterLink}
-                            alignItems={"center"}
-                            gap={4}
-                            _hover={{bg: "whiteAlpha.400"}}
-                            borderRadius={6}
-                            p={2}
-                            w={{base: 10, md: "full"}}
-                            justifyContent={{base: "center", md: "flex-start"}}
-                        >
-                            {item.icon}
-                            <Box display={{base: "none", md: "block"}}>
-                                {item.text}
-                            </Box>
-                        </Link>
-                    </Tooltip>
-                ))}
+                <SidebarItems />
             </Flex>
 
             {/* LOGOUT */}
