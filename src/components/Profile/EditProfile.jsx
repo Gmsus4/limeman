@@ -63,24 +63,25 @@ export const EditProfile = ({ isOpen, onClose }) => {
 
                                 <FormControl>
                                     <FormLabel fontSize={"sm"}>Full Name</FormLabel>
-                                    <Input placeholder={"Full Name"} size={"sm"} type={"text"}
-                                        value={inputs.fullName || authUser.fullName} //Si existe uno u otro
+                                    <Input placeholder={inputs.fullName || authUser.fullName} size={"sm"} type={"text"}
+                                        //En vez del value lo remplazamos por placeholder
+                                        //value={inputs.fullName || authUser.fullName} //Si existe uno u otro
                                         onChange={(e) => setInputs({...inputs, fullName: e.target.value})}
                                     />
                                 </FormControl>
 
                                 <FormControl>
                                     <FormLabel fontSize={"sm"}>Username</FormLabel>
-                                    <Input placeholder={"Username"} size={"sm"} type={"text"}
-                                        value={inputs.username || authUser.username}
+                                    <Input placeholder={inputs.username || authUser.username} size={"sm"} type={"text"}
+                                        //value={inputs.username || authUser.username}
                                         onChange={(e) => setInputs({...inputs, username: e.target.value})}
                                     />
                                 </FormControl>
 
                                 <FormControl>
                                     <FormLabel fontSize={"sm"}>Bio</FormLabel>
-                                    <Input placeholder={"Bio"} size={"sm"} type={"text"}
-                                        value={inputs.bio || authUser.bio}
+                                    <Input placeholder={inputs.bio || authUser.bio} size={"sm"} type={"text"}
+                                        //value={inputs.bio || authUser.bio}
                                         onChange={(e) => setInputs({...inputs, bio: e.target.value})}
                                     />
                                 </FormControl>

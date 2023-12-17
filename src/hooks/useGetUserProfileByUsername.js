@@ -16,27 +16,27 @@ export const useGetUserProfileByUsername = (username) => {
     const getUserProfile = async() => {
         setIsLoading(true)
         try {
-          const q = query(collection(firestore, 'users'), where('username', '==', username));
-          const querySnapshot = await getDocs(q)
+          const q = query(collection(firestore, 'users'), where('username', '==', username)); //Busca los datos del path en la base de datos
+          const querySnapshot = await getDocs(q) //Obtiene los datos del usuario (El usuario buscado mediante su username en el path)
 
-          if(querySnapshot.empty) return setUserProfile(null);
+          if(querySnapshot.empty) return setUserProfile(null); //Si no encontro nada, realmente no hace nada
 
-          let userDoc;
-          querySnapshot.forEach((doc) => {
+          let userDoc; //
+          querySnapshot.forEach((doc) => { //Si encuentra el usuario (El usuario buscado mediante su username en el path) guarda sus datos en una variable llamada userDoc
             userDoc = doc.data();
           });
 
-          setUserProfile(userDoc);
+          setUserProfile(userDoc); //Establece el userProfile con los datos del usuario (El usuario buscado mediante su username en el path)
           console.log(userDoc)
 
         } catch (error) {
             showToast('error', error.message, 'error');
         } finally{
-          setIsLoading(false);
+          setIsLoading(false); //Termina la carga
         }
     }   
-    getUserProfile();
+    getUserProfile(); //Ejecuta la funcion
   }, [setUserProfile, username, showToast])
   
-  return {isLoading, userProfile}
+  return {isLoading, userProfile} //Retorna los valores del perfil del usuario (El usuario buscado mediante su username en el path) y los valores de carga
 }
