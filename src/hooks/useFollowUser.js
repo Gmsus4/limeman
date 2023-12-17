@@ -52,6 +52,7 @@ export const useFollowUser = (userId) => {
                 setUser({
                     ...user,
                     following: [...user.following, userId]
+                    //De toda la lista de seguidores, agrega un dato mas que es el userId
                 });
                 setUserProfile({
                     ...userProfile,

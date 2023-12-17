@@ -65,13 +65,15 @@ export const ProfileHeader = () => {
                 </Text>
                 <Text fontSize={{base: "xs", md: "sm"}}>
                     <Text as={"span"} fontWeight={"bold"} mr={1}>
-                        {userProfile.followers.length}
+                        {visitingOwnProfileAndAuth ? authUser.followers.length : userProfile.followers.length}
+                        {/* {userProfile.followers.length} */}
                     </Text>
                     Followers
                 </Text>
                 <Text fontSize={{base: "xs", md: "sm"}}>
                     <Text as={"span"} fontWeight={"bold"} mr={1}>
-                        {userProfile.following.length}
+                        {visitingOwnProfileAndAuth ? authUser.following.length : userProfile.following.length}
+                        {/* {userProfile.following.length} */}
                     </Text>
                     Following
                 </Text>
