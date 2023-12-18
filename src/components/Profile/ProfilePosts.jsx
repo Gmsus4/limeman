@@ -1,16 +1,13 @@
-import { Box, Grid, Skeleton, VStack } from "@chakra-ui/react"
-import { useEffect, useState } from "react"
+import { Box, Flex, Grid, Skeleton, Text, VStack } from "@chakra-ui/react"
 import { ProfilePost } from "./ProfilePost";
+import { useGetUserPosts } from "../../hooks/useGetUserPosts";
 
 export const ProfilePosts = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const {isLoading, posts} = useGetUserPosts();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
-  }, [])
-  
+  const noPostsFound = !isLoading && posts.length === 0;
+  if(noPostsFound) return <NoPostsFound />
+
   return (
     <Grid
       templateColumns={{
@@ -20,7 +17,7 @@ export const ProfilePosts = () => {
       gap={1}
       columnGap={1}
     >
-      {isLoading && [0,1,2,3,4,5].map((_, idx) => (
+      {isLoading && [0,1,2].map((_, idx) => (
         <VStack key={idx} alignItems={"flex-start"} gap={4}>
           <Skeleton w={"full"}>
             <Box h={"300px"}>contents wrapped</Box>
@@ -29,16 +26,21 @@ export const ProfilePosts = () => {
       ))}
 
       {!isLoading && (
-
         <>
-          <ProfilePost img='https://images.pexels.com/photos/1906932/pexels-photo-1906932.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-          <ProfilePost img='https://images.pexels.com/photos/2361/nature-animal-wolf-wilderness.jpg?auto=compress&cs=tinysrgb&w=600'/>
-          <ProfilePost img='https://images.pexels.com/photos/682361/pexels-photo-682361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-          <ProfilePost img='https://images.pexels.com/photos/531533/pexels-photo-531533.jpeg?auto=compress&cs=tinysrgb&w=600'/>
-          <ProfilePost img='https://images.pexels.com/photos/158108/wolf-predator-carnivores-pack-animal-158108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+          {posts.map((post) => (
+            <ProfilePost post={post} key={post.id} />
+          ))}
         </>
       )}
       
     </Grid>
+  )
+}
+
+const NoPostsFound = () => {
+  return(
+    <Flex flexDir={"column"} textAlign={"center"} mx={"auto"} mt={10}>
+      <Text fontSize={"2xl"}>No Posts Found 🤔</Text>
+    </Flex>
   )
 }
