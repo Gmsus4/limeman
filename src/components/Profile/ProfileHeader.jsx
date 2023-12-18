@@ -22,7 +22,7 @@ export const ProfileHeader = () => {
             alignSelf={"flex-start"}
             mx={"auto"}
         >
-            <Avatar src={userProfile.profilePicURL} />
+            <Avatar name={userProfile.fullName} src={userProfile.profilePicURL} />
         </AvatarGroup>
 
         <VStack alignItems={"start"} gap={2} mx={"auto"} flex={1}>

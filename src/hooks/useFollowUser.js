@@ -36,10 +36,12 @@ export const useFollowUser = (userId) => {
                     // Filtra la lista de usuarios seguidos, excluyendo aquellos cuyo ID coincida con userId
                     // following hora contiene la lista de usuarios seguidos, excepto userId
                 });
-                setUserProfile({
-                    ...userProfile,
-                    followers: userProfile.followers.filter(uid => uid !== user.uid)
-                });
+
+                if(userProfile)
+                    setUserProfile({
+                        ...userProfile,
+                        followers: userProfile.followers.filter(uid => uid !== user.uid)
+                    });
 
                 localStorage.setItem('user-info', JSON.stringify({
                     ...user,
@@ -54,10 +56,12 @@ export const useFollowUser = (userId) => {
                     following: [...user.following, userId]
                     //De toda la lista de seguidores, agrega un dato mas que es el userId
                 });
-                setUserProfile({
-                    ...userProfile,
-                    followers: [...userProfile.followers, user.uid]
-                })
+
+                if(userProfile)
+                    setUserProfile({
+                        ...userProfile,
+                        followers: [...userProfile.followers, user.uid]
+                    })
 
                 localStorage.setItem('user-info', JSON.stringify({
                     ...user,

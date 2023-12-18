@@ -62,7 +62,7 @@ export const Search = () => {
 							</Button>
 						</Flex>
 					</form>
-					{user && <SuggestedUser user={user} setUser={setUser} getUserProfile={getUserProfile} />}
+					{user && <SuggestedUser user={user} setUser={setUser}/>}
 				</ModalBody>
 			</ModalContent>
 		</Modal>
