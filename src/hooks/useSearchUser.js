@@ -16,10 +16,18 @@ export const useSearchUser = () => {
 
 			const querySnapshot = await getDocs(q);
 			if (querySnapshot.empty) return showToast("Error", "User not found", "error");
+			
+			let data = [];
+			querySnapshot.forEach((doc) => {
+				data.push(doc.data());
+			});
+			//console.log(data)
 
 			querySnapshot.forEach((doc) => {
 				setUser(doc.data());
 			});
+			//console.log("Datos del usuario encontrado: ")
+			console.log(user)
 		} catch (error) {
 			showToast("Error", error.message, "error");
 			setUser(null);

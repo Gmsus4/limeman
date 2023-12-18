@@ -1,7 +1,7 @@
 import { Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Tooltip, useDisclosure } from "@chakra-ui/react"
 import { SearchLogo } from "../../assets/constants"
 import { useSearchUser } from "../../hooks/useSearchUser";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { SuggestedUser } from "../SuggestedUsers/SuggestedUser";
 
 export const Search = () => {
@@ -13,6 +13,11 @@ export const Search = () => {
 		e.preventDefault();
 		getUserProfile(searchRef.current.value);
 	};
+
+	const handleClose = () => {
+		onClose();
+		setUser(null);
+	}
 
   return (
 	<>
@@ -39,11 +44,11 @@ export const Search = () => {
 			</Flex>
 		</Tooltip>
 
-		<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>
+		<Modal isOpen={isOpen} onClose={handleClose} motionPreset='slideInLeft'>
 			<ModalOverlay />
 			<ModalContent bg={"black"} border={"1px solid gray"} maxW={"400px"}>
 				<ModalHeader>Search user</ModalHeader>
-				<ModalCloseButton />
+				<ModalCloseButton/>
 				<ModalBody pb={6}>
 					<form onSubmit={handleSearchUser}>
 						<FormControl>
@@ -57,7 +62,7 @@ export const Search = () => {
 							</Button>
 						</Flex>
 					</form>
-					{user && <SuggestedUser user={user} setUser={setUser} />}
+					{user && <SuggestedUser user={user} setUser={setUser} getUserProfile={getUserProfile} />}
 				</ModalBody>
 			</ModalContent>
 		</Modal>
