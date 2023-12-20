@@ -6,7 +6,7 @@ export const ProfilePosts = () => {
   const {isLoading, posts} = useGetUserPosts();
 
   const noPostsFound = !isLoading && posts.length === 0;
-  if(noPostsFound) return <NoPostsFound />
+	if (noPostsFound) return <NoPostsFound />;
 
   return (
     <Grid
@@ -32,7 +32,6 @@ export const ProfilePosts = () => {
           ))}
         </>
       )}
-      
     </Grid>
   )
 }
