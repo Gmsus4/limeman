@@ -138,69 +138,12 @@ export const ProfilePost = ({post}) => {
                 </Flex>
                 <Divider my={4} bg={"gray.500"} />
                 <VStack w={"full"} alignItems={"start"} maxH={"350px"} overflowY={"auto"}>
-                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd'
-                  />
-                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd'
-                  />
-                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe omnis doloremque maxime ad quidem nemo quia quisquam cum dolore sint exercitationem vitae blanditiis natus error, odit ab quasi corporis porro? '
-                  />
-                                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe omnis doloremque maxime ad quidem nemo quia quisquam cum dolore sint exercitationem vitae blanditiis natus error, odit ab quasi corporis porro? '
-                  />
-                                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe omnis doloremque maxime ad quidem nemo quia quisquam cum dolore sint exercitationem vitae blanditiis natus error, odit ab quasi corporis porro? '
-                  />
-                                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe omnis doloremque maxime ad quidem nemo quia quisquam cum dolore sint exercitationem vitae blanditiis natus error, odit ab quasi corporis porro? '
-                  />
-                                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe omnis doloremque maxime ad quidem nemo quia quisquam cum dolore sint exercitationem vitae blanditiis natus error, odit ab quasi corporis porro? '
-                  />
-                                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe omnis doloremque maxime ad quidem nemo quia quisquam cum dolore sint exercitationem vitae blanditiis natus error, odit ab quasi corporis porro? '
-                  />
-                                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe omnis doloremque maxime ad quidem nemo quia quisquam cum dolore sint exercitationem vitae blanditiis natus error, odit ab quasi corporis porro? '
-                  />
-                                  <Comment
-                    createAt='1d ago'
-                    username='gmsus4'
-                    profilePic='https://res.cloudinary.com/dozzu7xhx/image/upload/v1686943818/perfil/azbel14qetbdbs282zem.jpg'
-                    text='Comentarios sin sentido xd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe omnis doloremque maxime ad quidem nemo quia quisquam cum dolore sint exercitationem vitae blanditiis natus error, odit ab quasi corporis porro? '
-                  />
+                    {post.comments.map((comment, idx) => (
+                      <Comment key={idx} comment={comment}/>
+                    ))}
                 </VStack>
                 <Divider my={4} bg={"gray.800"} />
-                <PostFooter isProfilePage={true}/>
+                <PostFooter isProfilePage={true} post={post}/>
               </Flex>
             </Flex>
           </ModalBody>

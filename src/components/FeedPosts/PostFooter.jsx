@@ -1,10 +1,19 @@
 import { Box, Button, Flex, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from "../../assets/constants"
+import { usePostsComment } from "../../hooks/usePostsComment"
+import { useAuthStore } from "../../store/authStore"
 
-export const PostFooter = ({username, isProfilePage}) => {
+export const PostFooter = ({post, username, isProfilePage}) => {
   const [liked, setLiked] = useState(false)
   const [likes, setLikes] = useState(100)
+  const {isCommenting, handlePostComment} = usePostsComment();
+  const [comment, setComment] = useState('');
+  const authUser = useAuthStore(state => state.user)
+  const handleSubmitComment = async() => {
+    await handlePostComment(post.id, comment);
+    setComment('');
+  }
 
   const handleLike = () => {
     if(liked){
@@ -42,28 +51,35 @@ export const PostFooter = ({username, isProfilePage}) => {
           </Text>
         </>
       )}
-      <Flex
-        alignItems={"center"}
-        gap={2}
-        justifyContent={"space-between"}
-        w={"full"}
-      >
-        <InputGroup>
-          <Input variant={"flushed"} placeholder="Add a comment..." fontSize={14} />
-          <InputRightElement>
-            <Button
-              fontSize={14}
-              color={"blue.500"}
-              fontWeight={600}
-              cursor={"pointer"}
-              _hover={{color: "white"}}
-              bg={"transparent"}
-            >
-              Post
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </Flex>
+      {authUser && (
+        <Flex
+          alignItems={"center"}
+          gap={2}
+          justifyContent={"space-between"}
+          w={"full"}
+        >
+          <InputGroup>
+            <Input variant={"flushed"} placeholder="Add a comment..." fontSize={14} 
+              onChange={(e) => setComment(e.target.value)}
+              value={comment}
+            />
+            <InputRightElement>
+              <Button
+                fontSize={14}
+                color={"blue.500"}
+                fontWeight={600}
+                cursor={"pointer"}
+                _hover={{color: "white"}}
+                bg={"transparent"}
+                onClick={handleSubmitComment}
+                isLoading={isCommenting}
+              >
+                Post
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </Flex>
+      )}
     </Box>
   )
 }
