@@ -27,7 +27,7 @@ export const GoogleAuth = ({prefix}) => {
 				loginUser(userDoc);
 			} else {
 				// signup
-        const userName = `${newUser.user.email.split("@")[0].replace(/[^\w\s]/gi, '')}${newUser.user.uid.substring(0, 4)}`;
+        		const userName = `${newUser.user.email.split("@")[0].replace(/[^\w\s]/gi, '')}${newUser.user.uid.substring(0, 6)}`;
 				const userDoc = {
 					uid: newUser.user.uid,
 					email: newUser.user.email,

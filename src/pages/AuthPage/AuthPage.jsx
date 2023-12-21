@@ -15,7 +15,7 @@ export const AuthPage = () => {
               </Box>
 
               {/* Right Hand-Side */}
-              <VStack spacing={4} align={"stretch"}> {/* Un div que esta configurado para que todo los hijos vayan en vertical */}
+              <VStack w={"300px"} spacing={4} align={"stretch"}> {/* Un div que esta configurado para que todo los hijos vayan en vertical */}
                   <AuthForm />
                   <Flex alignItems={"center"} justifyContent={"center"}>
                     <Image src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058306/Logos/logoSuccessWhite_i7rbyx.png" h={10} alt="IMAGE A"/>

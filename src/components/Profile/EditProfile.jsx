@@ -5,6 +5,7 @@ import { useAuthStore } from "../../store/authStore";
 import { usePreviewImg } from "../../hooks/usePreviewImg";
 import { useEditProfile } from "../../hooks/useEditProfile";
 import { useNavigate } from "react-router-dom";
+import { useUsernameExists } from "../../hooks/useUsernameExists";
 
 export const EditProfile = ({ isOpen, onClose }) => {
     const [inputs, setInputs] = useState({
@@ -18,21 +19,25 @@ export const EditProfile = ({ isOpen, onClose }) => {
     const fileRef = useRef(null);
     const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
     const { isUpdating, editProfile} = useEditProfile();
+    const { searchUsernameExist } = useUsernameExists();
     const showToast = useShowToast()
 
-    const handleEditProfile = async() => { //Accion al editar
+    const handleEditProfile = async () => {
         try {
-            await editProfile(inputs, selectedFile);
-            setSelectedFile(null);
-            onClose();
-            inputs.username && navigate(`/${inputs.username}`);
-            //console.log(inputs.username)
-            //navigate(`/${inputs.username}`); //Pequeña sugrencia de codigo
+            const isUsernameExisting = await searchUsernameExist(inputs.username);
+            if (!isUsernameExisting) {
+                await editProfile(inputs, selectedFile);
+                setSelectedFile(null);
+                onClose();
+                inputs.username && navigate(`/${inputs.username}`);
+            } else {
+                showToast('Error', 'Username already exists', 'error');
+            }
         } catch (error) {
-            showToast('Error', error.message, 'error')
+            showToast('Error', error.message, 'error');
         }
-    }
-
+    };
+    
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
