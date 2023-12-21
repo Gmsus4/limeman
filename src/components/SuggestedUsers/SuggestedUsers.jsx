@@ -2,13 +2,14 @@ import { Box, Flex, Link, Text, VStack } from "@chakra-ui/react"
 import { SuggestedHeader } from "./SuggestedHeader"
 import { useGetSuggestedUsers } from "../../hooks/useGetSuggestedUsers"
 import { SuggestedUser } from "./SuggestedUser";
+import { useState } from "react";
 
 export const SuggestedUsers = () => {
    const {isLoading, suggestedUsers} = useGetSuggestedUsers();
-
-   // optional: render loading skeleton
-   if(isLoading) return null;
-
+    if(isLoading) return null;
+    // const handleBtnSeeAll = () =>{
+    //     setSuggestedUsersView(suggestedUsers);
+    // }
   return (
     <VStack py={10} px={6} gap={4}>
         <SuggestedHeader />
@@ -18,9 +19,9 @@ export const SuggestedUsers = () => {
                 <Text fontSize={12} fontWeight={"bold"} color={"gray.500"}>
                     Suggested for you
                 </Text>
-                <Text fontSize={12} fontWeight={"bold"} _hover={{color: "grey.400"}} cursor={"pointer"}>
+                {/* <Text fontSize={12} fontWeight={"bold"} _hover={{color: "grey.400"}} cursor={"pointer"} onClick={handleBtnSeeAll}>
                     See All
-                </Text>
+                </Text> */}
             </Flex>
         )}
 

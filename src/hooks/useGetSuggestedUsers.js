@@ -18,7 +18,7 @@ export const useGetSuggestedUsers = () => {
 				const q = query(usersRef, //. Todos los uid que no contengan
                     where("uid", "not-in", [authUser.uid, ...authUser.following]), 
                     orderBy("uid"), 
-                    limit(10)
+                    //limit(limitUsers)
                 ); 
 
 				const querySnapshot = await getDocs(q);
