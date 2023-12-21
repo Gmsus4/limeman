@@ -1,4 +1,4 @@
-import { Avatar, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack } from "@chakra-ui/react";
+import { Alert, AlertIcon, Avatar, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useShowToast } from "../../hooks/useShowToast";
 import { useAuthStore } from "../../store/authStore";
@@ -6,6 +6,27 @@ import { usePreviewImg } from "../../hooks/usePreviewImg";
 import { useEditProfile } from "../../hooks/useEditProfile";
 import { useNavigate } from "react-router-dom";
 import { useUsernameExists } from "../../hooks/useUsernameExists";
+import * as Yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+
+const validationSchema = Yup.object({
+    username: Yup.string()
+        .required('El nombre de usuario es obligatorio')
+        .matches(/^[a-zA-Z0-9_]+$/, 'El nombre de usuario solo puede contener letras, números y guiones bajos')
+        .matches(/^\S*$/, 'El nombre de usuario no puede contener espacios en blanco')
+        .min(3, '¡Demasiado corto!')
+        .max(30, '¡Demasiado largo!'),
+    
+    fullName: Yup.string()
+        .min(3, '¡Demasiado corto!')
+        .max(63, '¡Demasiado largo!')
+        .required('El nombre es requerido'),
+    
+    bio: Yup.string()
+        .max(150, 'La biografía no puede exceder los 150 caracteres'),
+        //.min(3, '¡Demasiado corto!'),
+}).required();
 
 export const EditProfile = ({ isOpen, onClose }) => {
     const [inputs, setInputs] = useState({
@@ -22,16 +43,28 @@ export const EditProfile = ({ isOpen, onClose }) => {
     const { searchUsernameExist } = useUsernameExists();
     const showToast = useShowToast()
 
-    const handleEditProfile = async () => {
+    const { register, handleSubmit, formState:{ errors } } = useForm({
+        resolver: yupResolver(validationSchema)
+    });
+
+    const handleEditProfile = async (data) => {
         try {
-            const isUsernameExisting = await searchUsernameExist(inputs.username);
-            if (!isUsernameExisting) {
-                await editProfile(inputs, selectedFile);
+            const isUsernameExisting = await searchUsernameExist(data.username);
+            if (!isUsernameExisting) { //Si el username no existe
+                await editProfile(data, selectedFile);
                 setSelectedFile(null);
                 onClose();
-                inputs.username && navigate(`/${inputs.username}`);
-            } else {
-                showToast('Error', 'Username already exists', 'error');
+                data.username && navigate(`/${data.username}`);
+            } else { //Si el username existe
+                if(data.username === authUser.username){ //Si el valor del input del username es igual al valor del username del user autenticado
+                    await editProfile(data, selectedFile); //Actualiza los datos (Edita los datos)
+                    setSelectedFile(null);
+                    onClose();
+                    data.username && navigate(`/${data.username}`);
+                } else{
+                    //Si el valor del username autenticado es diferente al de la busqueda entones quiere decir que ese username ya existe
+                    showToast('Error', 'Username already exists', 'error');
+                }
             }
         } catch (error) {
             showToast('Error', error.message, 'error');
@@ -68,27 +101,41 @@ export const EditProfile = ({ isOpen, onClose }) => {
 
                                 <FormControl>
                                     <FormLabel fontSize={"sm"}>Full Name</FormLabel>
-                                    <Input placeholder={inputs.fullName || authUser.fullName} size={"sm"} type={"text"}
-                                        //En vez del value lo remplazamos por placeholder
-                                        //value={inputs.fullName || authUser.fullName} //Si existe uno u otro
-                                        onChange={(e) => setInputs({...inputs, fullName: e.target.value})}
+                                    <Input placeholder={register.fullName || authUser.fullName} size={"sm"} type={"text"}
+                                        {...register("fullName")}
                                     />
+                                    { errors.fullName?.message && (
+                                        <Alert status="error" fontSize={10} p={1} borderRadius={4} w={"full"} my={2}>
+                                            <AlertIcon fontSize={12} />
+                                            {errors.fullName?.message}
+                                        </Alert>
+                                    )}
                                 </FormControl>
 
                                 <FormControl>
                                     <FormLabel fontSize={"sm"}>Username</FormLabel>
-                                    <Input placeholder={inputs.username || authUser.username} size={"sm"} type={"text"}
-                                        //value={inputs.username || authUser.username}
-                                        onChange={(e) => setInputs({...inputs, username: e.target.value})}
+                                    <Input placeholder={register.username || authUser.username} size={"sm"} type={"text"}
+                                        {...register("username")}
                                     />
+                                    { errors.username?.message && (
+                                        <Alert status="error" fontSize={10} p={1} borderRadius={4} w={"full"} my={2}>
+                                            <AlertIcon fontSize={12} />
+                                            {errors.username?.message}
+                                        </Alert>
+                                    )}
                                 </FormControl>
 
                                 <FormControl>
                                     <FormLabel fontSize={"sm"}>Bio</FormLabel>
-                                    <Input placeholder={inputs.bio || authUser.bio} size={"sm"} type={"text"}
-                                        //value={inputs.bio || authUser.bio}
-                                        onChange={(e) => setInputs({...inputs, bio: e.target.value})}
+                                    <Input placeholder={register.bio || authUser.bio} size={"sm"} type={"text"}
+                                        {...register("bio")}
                                     />
+                                    { errors.bio?.message && (
+                                        <Alert status="error" fontSize={10} p={1} borderRadius={4} w={"full"} my={2}>
+                                            <AlertIcon fontSize={12} />
+                                            {errors.bio?.message}
+                                        </Alert>
+                                    )}
                                 </FormControl>
 
                                 <Stack spacing={6} direction={["column", "row"]}>
@@ -108,7 +155,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                                         size='sm'
                                         w='full'
                                         _hover={{ bg: "blue.500" }}
-                                        onClick={handleEditProfile}
+                                        onClick={handleSubmit(handleEditProfile)}
                                         isLoading={isUpdating}
                                     >
                                         Submit
