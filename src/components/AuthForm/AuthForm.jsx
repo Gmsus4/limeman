@@ -2,7 +2,7 @@ import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 import { Login } from "./Login"
 import { GoogleAuth } from "./GoogleAuth"
-import { SignUp } from "./Signup"
+import { Signup } from "./Signup"
 
 export const AuthForm = () => {
     const [isLogin, setIsLogin] = useState(true) //useState para verificar si esta login o se esta registrando
@@ -14,7 +14,7 @@ export const AuthForm = () => {
                         src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058636/Logos/logoOneX_edsiee.png"
                     />
 
-                    {isLogin ? <Login /> : <SignUp/>}
+                    {isLogin ? <Login /> : <Signup/>}
 
                     {/* ------------------------  OR TEXT ----------------------------*/}
                     <Flex alignItems={"center"} justifyContent={"center"} my={4} gap={1} w={"full"}>
