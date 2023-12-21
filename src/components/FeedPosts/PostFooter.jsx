@@ -4,8 +4,9 @@ import { CommentLogo, NotificationsLogo, UnlikeLogo } from "../../assets/constan
 import { usePostsComment } from "../../hooks/usePostsComment"
 import { useAuthStore } from "../../store/authStore"
 import { useLikePost } from "../../hooks/useLikePost"
+import { timeAgo } from "../../utils/timeAgo"
 
-export const PostFooter = ({post, username, isProfilePage}) => {
+export const PostFooter = ({post, isProfilePage, creatorProfile}) => {
   const {isCommenting, handlePostComment} = usePostsComment();
   const [comment, setComment] = useState('');
   const authUser = useAuthStore(state => state.user)
@@ -30,22 +31,29 @@ export const PostFooter = ({post, username, isProfilePage}) => {
       <Text fontWeight={600} fontSize={"sm"}>
         {likes} likes
       </Text>
-      { !isProfilePage && (
-        <>
-          <Text fontWeight={600} fontSize={"sm"}>
-            {likes} likes
-          </Text>
-          <Text fontWeight={700} fontSize={"sm"}>
-            {username}_{" "}
-            <Text as={'span'} fontWeight={400}>
-              Feeling Good
-            </Text>
-          </Text>
-          <Text color={"grey"} fontSize={"sm"}>
-            View all 1,000 comments
-          </Text>
-        </>
+      
+      {/* El prop isProfilePage parece estar diseñado para controlar el comportamiento del componente PostFooter basado en si la página actual es la página de perfil de un usuario. Si está obteniendo true solo cuando entra en la página del post y no en otras páginas, podría haber varias razones: */}
+      {isProfilePage && (
+        <Text fontSize="12" color={"gray"}>
+          Posted {timeAgo(post.createdAt)}
+        </Text>
       )}
+			{!isProfilePage && (
+				<>
+					<Text fontSize='sm' fontWeight={700}>
+						{creatorProfile?.username}{" "}
+						<Text as='span' fontWeight={400}>
+							{post.caption}
+						</Text>
+					</Text>
+					{post.comments.length > 0 && (
+						<Text fontSize='sm' color={"gray"} cursor={"pointer"}>
+							View all {post.comments.length} comments
+						</Text>
+					)}
+					{/* COMMENTS MODAL ONLY IN THE HOME PAGE */}
+				</>
+			)}
       {authUser && (
         <Flex
           alignItems={"center"}
