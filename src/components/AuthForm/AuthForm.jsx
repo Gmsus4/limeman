@@ -1,8 +1,8 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 import { Login } from "./Login"
-import { SignUp } from "./SignUp"
 import { GoogleAuth } from "./GoogleAuth"
+import { SignUp } from "./Signup"
 
 export const AuthForm = () => {
     const [isLogin, setIsLogin] = useState(true) //useState para verificar si esta login o se esta registrando
