@@ -3,7 +3,6 @@ import { Alert, AlertIcon, Button, Input, InputGroup, InputRightElement } from "
 import { useState } from "react";
 import { useSignUpWithEmailAndPassword } from "../../hooks/useSignUpWithEmailAndPassword";
 import * as Yup from 'yup';
-import { useShowToast } from "../../hooks/useShowToast";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -30,7 +29,7 @@ const validationSchema = Yup.object({ //SOLO LOS SCHEMA NECESARIOS PARA LA VALID
     .matches(/[a-zA-Z]/, 'La contraseña solo puede contener letras latinas.'), // Verifica que la contraseña contenga solo letras latinas 
 }).required();// Requiere que todos los campos sean proporcionados
 
-export const SignUp = () => {
+export const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { loading, error, signup } = useSignUpWithEmailAndPassword();
 
