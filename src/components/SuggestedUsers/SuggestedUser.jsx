@@ -18,7 +18,7 @@ export const SuggestedUser = ({user, setUser}) => {
 	};
 
 	return (
-		<Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
+		<Flex justifyContent={"space-between"} alignItems={"center"} w={"full"} mb={4}>
 			<Flex alignItems={"center"} gap={2}>
 				<Link to={`/${user.username}`}>
 					<Avatar src={user.profilePicURL} size={"md"} />

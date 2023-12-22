@@ -9,9 +9,9 @@ export const HomePage = () => {
         <Box flex={2} py={10}>
           <FeedPosts />
         </Box>
-        <Box flex={3} mr={20} display={{base: "none", lg: "block"}} maxW={"300px"}> 
+        {/* <Box flex={3} mr={20} display={{base: "none", lg: "block"}} maxW={"300px"}> 
           <SuggestedUsers />
-        </Box>
+        </Box> */}
       </Flex>
     </Container>
   )

@@ -55,7 +55,7 @@ export const ProfileHeader = () => {
                     </Flex>
                 )}
             </Flex>
-            <Flex alignItems={"center"} gap={{base: 2, sm: 4}} className="ssss">
+            <Flex alignItems={"center"} gap={{base: 2, sm: 4}}>
                 <Text fontSize={{base: "xs", md: "sm"}}>
                     <Text as={"span"} fontWeight={"bold"} mr={1}>
                         {userProfile.posts.length}

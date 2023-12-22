@@ -110,7 +110,7 @@ export const ProfilePost = ({post}) => {
               >
               <Image w={"100%"} h={"100%"} objectFit={"cover"} src={post.imageURL} alt="profile post"/>
               </Flex>
-              <Flex flex={1} flexDir={"column"} px={10} display={{base: "none", md: "flex"}} className="asddsdddd">
+              <Flex flex={1} flexDir={"column"} px={10} display={{base: "none", md: "flex"}}>
                 <Flex alignItems={"center"} justifyContent={"space-between"} mt={2}>
                   <Flex alignItems={"center"} gap={4}>
                     <Avatar 
