@@ -34,7 +34,8 @@ export const Login = () => {
             <Button 
                 w={"full"} 
                 isLoading={loading}
-                colorScheme="green" 
+                bg={"primary.100"}
+                _hover={{bg: "primary.900"}}
                 size={"sm"} fontSize={14} 
                 onClick={() => login(inputs)}>
                 Login

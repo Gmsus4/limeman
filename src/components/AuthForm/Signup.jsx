@@ -118,7 +118,11 @@ export const Signup = () => {
                 </Alert>
             )}
             
-            <Button w={"full"} colorScheme="green" size={"sm"} fontSize={14} 
+            <Button 
+                w={"full"} 
+                bg={"primary.100"}
+                _hover={{bg: "primary.900"}}
+                size={"sm"} fontSize={14} 
                 isLoading={loading}
                 onClick={handleSubmit(onSubmit)}
                 >

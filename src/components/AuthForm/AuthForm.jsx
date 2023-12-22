@@ -10,7 +10,7 @@ export const AuthForm = () => {
         <>
         <Box>
             <VStack spacing={4}>
-                <Text colorScheme="green" variant={"h2"} textAlign={"center"} fontSize={"40px"}>{isLogin ? 'Sign In' : 'Signup'}</Text>
+                <Text textAlign={"center"} fontSize={"40px"}>{isLogin ? 'Sign In' : 'Signup'}</Text>
                 <GoogleAuth prefix={isLogin ? 'Log in' : 'Sign up'}/>
                 {isLogin ? <Login /> : <Signup/>}
                 <Box borderRadius={12} padding={2}>
