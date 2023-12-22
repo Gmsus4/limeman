@@ -56,8 +56,6 @@ export const ProfilePost = ({post}) => {
         cursor={"pointer"}
         borderRadius={4}
         overflow={"hidden"}
-        border={"1px solid "}
-        borderColor={"whiteAlpha.300"}
         position={"relative"}
         aspectRatio={1/1}
         onClick={onOpen}
@@ -70,22 +68,22 @@ export const ProfilePost = ({post}) => {
           left={0}
           right={0}
           bottom={0}
-          bg={"blackAlpha.300"}
+          bg={"blackAlpha.500"}
           transition={"all 0.3s ease"}
           zIndex={1}
           justifyContent={"center"}
         >
           <Flex alignItems={"center"} justifyContent={"center"} gap={50} >
             <Flex alignItems={"center"}>
-              <AiFillHeart size={20}/>
-              <Text fontWeight={"bold"} ml={2}>
+              <AiFillHeart size={20} color="white"/>
+              <Text fontWeight={"bold"} color={"whiteAlpha.900"} ml={2}>
                 {post.likes.length}
               </Text>
             </Flex>
 
             <Flex alignItems={"center"}>
-              <FaComment size={20}/>
-              <Text fontWeight={"bold"} ml={2}>
+              <FaComment size={20} color="white"/>
+              <Text fontWeight={"bold"} color={"whiteAlpha.900"} ml={2}>
                 {post.comments.length}
               </Text>
             </Flex>
@@ -103,18 +101,17 @@ export const ProfilePost = ({post}) => {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalBody bg={"black"} pb={5}>
+          <ModalBody p={5}>
             <Flex gap={4} w={{base: "90%", sm: "70%", md: "full"}} mx={"auto"} maxH={"90vh"} minH={"50vh"}>
-              <Flex borderRadius={4} overflow={"hidden"} border={"1px solid"} 
-                backgroundColor={"whiteAlpha.300"} 
+              <Flex borderRadius={8} overflow={"hidden"} boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"}
                 flex={1.5}
                 justifyContent={"center"}
                 alignItems={"center"}
               >
-                  <Image w={"100%"} h={"100%"} objectFit={"cover"} src={post.imageURL} alt="profile post"/>
+              <Image w={"100%"} h={"100%"} objectFit={"cover"} src={post.imageURL} alt="profile post"/>
               </Flex>
-              <Flex flex={1} flexDir={"column"} px={10} display={{base: "none", md: "flex"}}>
-                <Flex alignItems={"center"} justifyContent={"space-between"}>
+              <Flex flex={1} flexDir={"column"} px={10} display={{base: "none", md: "flex"}} className="asddsdddd">
+                <Flex alignItems={"center"} justifyContent={"space-between"} mt={2}>
                   <Flex alignItems={"center"} gap={4}>
                     <Avatar 
                       src={userProfile.profilePicURL} 

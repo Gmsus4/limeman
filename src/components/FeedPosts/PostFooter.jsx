@@ -21,35 +21,35 @@ export const PostFooter = ({post, isProfilePage, creatorProfile}) => {
   }
 
   return (
-    <Box mb={10} marginTop={"auto"}>
-      <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={4}>
-        <Box onClick={handleLikePost} cursor={"pointer"} fontSize={18}>
+    <Box mb={10} marginTop={"auto"} marginBottom={2}>
+      <Flex alignItems={"center"} gap={4} w={"80px"} pt={0} mb={2} mt={4} bg={"primary.100"} justifyContent={"start"} p={2} borderRadius={20}>
+        <Box onClick={handleLikePost} cursor={"pointer"} fontSize={18} >
           {!isLiked ? (<NotificationsLogo />) : (<UnlikeLogo />)}
         </Box>
         <Box cursor={"pointer"} fontSize={18} onClick={()=> commentRef.current.focus()}>
-          <CommentLogo />
+          <CommentLogo/>
         </Box>
       </Flex>
-      <Text fontWeight={600} fontSize={"sm"}>
+      <Text fontWeight={600} fontSize={"sm"} ml={2}>
         {likes} likes
       </Text>
       
       {/* El prop isProfilePage parece estar diseñado para controlar el comportamiento del componente PostFooter basado en si la página actual es la página de perfil de un usuario. Si está obteniendo true solo cuando entra en la página del post y no en otras páginas, podría haber varias razones: */}
       {isProfilePage && (
-        <Text fontSize="12" color={"gray"}>
+        <Text fontSize="12" color={"gray"} ml={2}>
           Posted {timeAgo(post.createdAt)}
         </Text>
       )}
 			{!isProfilePage && (
 				<>
-					<Text fontSize='sm' fontWeight={700}>
+					<Text fontSize='sm' fontWeight={700} ml={2}>
 						{creatorProfile?.username}{" "}
 						<Text as='span' fontWeight={400}>
 							{post.caption}
 						</Text>
 					</Text>
 					{post.comments.length > 0 && (
-						<Text fontSize='sm' color={"gray"} cursor={"pointer"} onClick={onOpen}>
+						<Text fontSize='sm' color={"gray"} cursor={"pointer"} onClick={onOpen} ml={2}>
 							View all {post.comments.length} comments
 						</Text>
 					)}
@@ -63,6 +63,7 @@ export const PostFooter = ({post, isProfilePage, creatorProfile}) => {
           gap={2}
           justifyContent={"space-between"}
           w={"full"}
+          ml={2}
         >
           <InputGroup>
             <Input variant={"flushed"} placeholder="Add a comment..." fontSize={14} 
@@ -73,10 +74,10 @@ export const PostFooter = ({post, isProfilePage, creatorProfile}) => {
             <InputRightElement>
               <Button
                 fontSize={14}
-                color={"blue.500"}
+                color={"primary.100"}
                 fontWeight={600}
                 cursor={"pointer"}
-                _hover={{color: "white"}}
+                _hover={{color: "primary.900"}}
                 bg={"transparent"}
                 onClick={handleSubmitComment}
                 isLoading={isCommenting}

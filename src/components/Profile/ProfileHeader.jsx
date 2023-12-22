@@ -14,9 +14,9 @@ export const ProfileHeader = () => {
     const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username; //Si authUser existe y si el authUser es distinto a username
 
   return (
-    <Flex gap={{base: 4, sm: 10}} py={10} direction={{base: "column", sm: "row"}}>
-        
+    <Flex className="divPadre" gap={{base: 4, sm: 10}} py={10} direction={{base: "column", sm: "row"}} alignItems={"center"}>
         <AvatarGroup 
+        className="holaaaa"
             size={{base: "xl", sm: "2xl"}}
             justifySelf={"center"}
             alignSelf={"flex-start"}
@@ -25,16 +25,15 @@ export const ProfileHeader = () => {
             <Avatar name={userProfile.fullName} src={userProfile.profilePicURL} />
         </AvatarGroup>
 
-        <VStack alignItems={"start"} gap={2} mx={"auto"} flex={1}>
+        <VStack  alignItems={{base: 'center', sm: "flex-start"}} gap={2} mx={"auto"} flex={1}>
             <Flex gap={4} direction={{base: "column", sm: "row"}}
                 justifyContent={{base: "center", sm: "flex-start"}}
                 alignItems={"center"}
-                w={"full"}
             >
                 <Text fontSize={{base: "sm", md: "lg"}}> {userProfile.username} </Text>
                 {visitingOwnProfileAndAuth && (
                     <Flex gap={4} alignItems={"center"} justifyContent={"center"} >
-                        <Button bg={"white"} color={"black"} _hover={{bg: "whiteAlpha.800"}} size={{base: "xs", md: "sm"}}
+                        <Button bg={"primary.100"} color={"whiteAlpha.900"} _hover={{bg: "primary.900"}} size={{base: "xs", md: "sm"}}
                             onClick={onOpen}
                         >
                             Edit Profile
@@ -56,7 +55,7 @@ export const ProfileHeader = () => {
                     </Flex>
                 )}
             </Flex>
-            <Flex alignItems={"center"} gap={{base: 2, sm: 4}}>
+            <Flex alignItems={"center"} gap={{base: 2, sm: 4}} className="ssss">
                 <Text fontSize={{base: "xs", md: "sm"}}>
                     <Text as={"span"} fontWeight={"bold"} mr={1}>
                         {userProfile.posts.length}

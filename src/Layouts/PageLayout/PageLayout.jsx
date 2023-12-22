@@ -15,20 +15,18 @@ export const PageLayout = ({children}) => {
     if(checkingUserIsAuth) return <PageLayoutSpinner />
 
     return (
-        <Flex flexDir={canRenderNavbar ? "column" : "row"}> 
+        <Flex flexDir={"column"} > 
             {/* SIDEBAR ON THE LEFT */}
 
             {canRenderSidebar ? ( //Si el pathname es distinto al auth entonces muestra el componente del sidebar
-                <Box w={{base: "70px", md: "240px"}}>
-                    <Sidebar />
-                </Box>
+                <Sidebar />
             ) : null}
 
             {/* NAVBAR */}
             {canRenderNavbar ? <Navbar /> : null}
 
             {/* THE PAGE CONTENT ON THE RIGHT */}
-            <Box flex={1} w={{base: "calc(100% - 70px)", md: "calc(100% - 240px)"}} mx={"auto"}>
+            <Box mx={"auto"}>
                 {children}
             </Box>
         </Flex>

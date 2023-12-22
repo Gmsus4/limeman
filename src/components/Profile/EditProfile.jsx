@@ -75,20 +75,20 @@ export const EditProfile = ({ isOpen, onClose }) => {
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent bg={"black"} boxShadow={"xl"} border={"1px solid gray"} mx={3}>
+                <ModalContent boxShadow={"xl"} mx={3}>
                     <ModalHeader />
                     <ModalCloseButton />
                     <ModalBody>
                         {/* Container Flex */}
-                        <Flex bg={"black"}>
-                            <Stack spacing={4} w={"full"} maxW={"md"} bg={"black"} p={6} my={0}>
-                                <Heading lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
+                        <Flex bg={"whiteAlpha.900"}>
+                            <Stack spacing={4} w={"full"} maxW={"md"} bg={"whiteAlpha.900"} p={6} my={0}>
+                                <Heading color={"primary.100"} lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
                                     Edit Profile
                                 </Heading>
                                 <FormControl>
                                     <Stack direction={["column", "row"]} spacing={6}>
                                         <Center>
-                                            <Avatar size='xl' name={authUser.fullName} src={selectedFile || authUser.profilePicURL} border={"2px solid white "} />
+                                            <Avatar size='xl' name={authUser.fullName} src={selectedFile || authUser.profilePicURL} />
                                         </Center>
                                         <Center w='full'>
                                             <Button onClick={() => fileRef.current.click()} w='full'>
@@ -141,7 +141,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                                 <Stack spacing={6} direction={["column", "row"]}>
                                     <Button
                                         bg={"red.400"}
-                                        color={"white"}
+                                        color={"whiteAlpha.900"}
                                         w='full'
                                         size='sm'
                                         _hover={{ bg: "red.500" }}
@@ -150,11 +150,11 @@ export const EditProfile = ({ isOpen, onClose }) => {
                                         Cancel
                                     </Button>
                                     <Button
-                                        bg={"blue.400"}
-                                        color={"white"}
+                                        bg={"primary.100"}
+                                        color={"whiteAlpha.900"}
                                         size='sm'
                                         w='full'
-                                        _hover={{ bg: "blue.500" }}
+                                        _hover={{ bg: "primary.900" }}
                                         onClick={handleSubmit(handleEditProfile)}
                                         isLoading={isUpdating}
                                     >

@@ -22,6 +22,7 @@ export const ProfilePage = () => {
                 w={"full"}
                 mx={"auto"}
                 flexDirection={"column"}
+                alignItems={"center"}
             >
                 {!isLoading && userProfile && <ProfileHeader />}
 				{isLoading && <ProfileHeaderSkeleton />}

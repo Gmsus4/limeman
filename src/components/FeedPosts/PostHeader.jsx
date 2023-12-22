@@ -40,10 +40,10 @@ export const PostHeader = ({post, creatorProfile}) => {
             size={"xs"}
             bg={"transparent"}
             fontSize={12} 
-            color={"blue.500"}
+            color={"primary.100"}
             fontWeight={"bold"}
             _hover={{
-              color: "white"
+              color: "primary.900"
             }}
             transition={"0.2s ease-in-out"}
             onClick={handleFollowUser}

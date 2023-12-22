@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Link, Tooltip } from "@chakra-ui/react"
+import { Box, Button, Flex, Image, Link, Text, Tooltip } from "@chakra-ui/react"
 import { Link as RouterLink } from "react-router-dom"
 import { useLogout } from "../../hooks/useLogout";
 import { SidebarItems } from "./SidebarItems";
@@ -8,8 +8,26 @@ export const Sidebar = () => {
   const { handleLogout, isLogginOut } = useLogout();
 
   return (
-    <Box 
-        height={"100vh"} 
+    <Box backgroundColor={"primary.100"} w={"full"} h={"60px"}>
+        <Flex alignItems={"center"} px={10} height={"inherit"} justifyContent={"space-between"}>
+            <Link to={"/"} as={RouterLink} pl={2} display={{base: "none", md: "block"}} cursor={"pointer"}>
+                <Image height={"50px"} src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058306/Logos/logoSuccessWhite_i7rbyx.png" alt=""/>
+            </Link>
+            <Link pl={0} alignItems={"center"} to={"/"} as={RouterLink} display={{base: "block", md: "none"}}
+                borderRadius={6}
+                _hover={{
+                    bg: "green"
+                }}
+                w={{base: 10}}
+                cursor={"pointer"}>
+                    <Image src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1703221030/Logos/logoOneWhite_vsdkwy.png"/>
+            </Link>
+            <Flex direction={"row"} gap={5} cursor={"pointer"}>
+                <SidebarItems />
+            </Flex>
+        </Flex>
+    </Box>
+/*     <Box 
         borderRight={"1px solid"}
         borderColor={"gray"}
         py={8}
@@ -18,7 +36,7 @@ export const Sidebar = () => {
         left={0}
         px={{base:2, md: 4}}
     >
-        <Flex direction={"column"} gap={10} w={"full"} height={"full"} alignItems={{base: "center", md: "start"}}>
+        <Flex direction={"row"} gap={10} w={"full"} height={"full"} alignItems={{base: "center", md: "start"}}>
             <Link to={"/"} as={RouterLink} pl={2} display={{base: "none", md: "block"}} cursor={"pointer"}>
                 <Image src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058306/Logos/logoSuccessWhite_i7rbyx.png"/>
             </Link>
@@ -35,7 +53,6 @@ export const Sidebar = () => {
                 <SidebarItems />
             </Flex>
 
-            {/* LOGOUT */}
             <Tooltip 
                 hasArrow
                 label={"Logout"}
@@ -45,9 +62,6 @@ export const Sidebar = () => {
                 display={{base: "block", md: "none"}}
             >
                 <Flex 
-/*                     display={"flex"}
-                    to={"/auth"}
-                    as={RouterLink} */
                     onClick={handleLogout}
                     alignItems={"center"}
                     gap={4}
@@ -70,6 +84,9 @@ export const Sidebar = () => {
                 </Flex>
             </Tooltip>
         </Flex>
-    </Box>
+    </Box> */
   )
+
+/*   <Image src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058306/Logos/logoSuccessWhite_i7rbyx.png"/>
+  <Image src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058636/Logos/logoOneX_edsiee.png"/> */
 }

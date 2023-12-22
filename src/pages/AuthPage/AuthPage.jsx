@@ -3,25 +3,14 @@ import { AuthForm } from "../../components/AuthForm/AuthForm"
 
 export const AuthPage = () => {
   return (
-    <Flex minH={"100vh"} justifyContent={"center"}alignItems={"center"} px={4}>
-        <Container maxW={'container.md'} padding={0}> {/* Contenedor */}
-          <Flex justifyContent={"center"} alignItems={"center"} px={4}> 
-              {/* Left Hand-Side */}
-              <Box display={{base: "none", md: "block"}}> {/* De base no tiene display pero en pantallas medianas el display es block  */}
-                <Image 
-                  h={250} alt="ImageBambuLogo"
-                  src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058636/Logos/logoOneX_edsiee.png"
-                />
-              </Box>
-
-              {/* Right Hand-Side */}
-              <VStack w={"300px"} spacing={4} align={"stretch"}> {/* Un div que esta configurado para que todo los hijos vayan en vertical */}
-                  <AuthForm />
-                  <Flex alignItems={"center"} justifyContent={"center"}>
-                    <Image src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058306/Logos/logoSuccessWhite_i7rbyx.png" h={10} alt="IMAGE A"/>
-                  </Flex>
-              </VStack>
-          </Flex>
+    <Flex bg={"#f6f5f7"} flexDir={"column"} minH={"100vh"} justifyContent={"center"} alignItems={"center"} px={4}>
+        <Container maxW={'container.md'} padding={0}
+           w={"350px"} py={"40px"} px={"60px"} borderRadius={20} display={"flex"} flexDir={"column"} bg={"white"} 
+           boxShadow={"rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px"}
+           alignItems={"center"}
+        > 
+          <Image w={"150px"} src="https://res.cloudinary.com/dozzu7xhx/image/upload/v1702058636/Logos/logoOneX_edsiee.png"/>
+          <AuthForm />
         </Container>
     </Flex>
   )

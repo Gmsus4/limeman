@@ -52,15 +52,15 @@ export const CreatePost = () => {
 					onClick={onOpen}
 				>
 					<CreatePostLogo />
-					<Box display={{ base: "none", md: "block" }}>Create</Box>
+					<Box color={"white"} display={{ base: "none", md: "block" }}>Create</Box>
 				</Flex>
 			</Tooltip>
 
 			<Modal isOpen={isOpen} onClose={onClose} size='xl'>
 				<ModalOverlay />
 
-				<ModalContent bg={"black"} border={"1px solid gray"}>
-					<ModalHeader>Create Post</ModalHeader>
+				<ModalContent>
+					<ModalHeader color={"primary.100"}>Create Post</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody pb={6}>
 						<Textarea
@@ -92,7 +92,7 @@ export const CreatePost = () => {
 					</ModalBody>
 
 					<ModalFooter>
-						<Button mr={3} onClick={handlePostCreation} isLoading={isLoading}>
+						<Button mr={3} onClick={handlePostCreation} isLoading={isLoading} bg={"primary.100"} color={"whiteAlpha.900"} _hover={{ bg: "primary.900"}}>
 							Post
 						</Button>
 					</ModalFooter>

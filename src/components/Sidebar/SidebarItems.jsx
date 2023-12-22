@@ -3,13 +3,15 @@ import { Home } from "./Home"
 import { Notifications } from "./Notifications"
 import { ProfileLink } from "./ProfileLink"
 import { Search } from "./Search"
+import { ToogleDark } from "./ToogleDark"
 
 export const SidebarItems = () => {
   return (
     <>
-        <Home />
+        {/* <Home /> */}
+        <ToogleDark />
         <Search />
-        <Notifications />
+        {/* <Notifications /> */}
         <CreatePost />
         <ProfileLink />
     </>
