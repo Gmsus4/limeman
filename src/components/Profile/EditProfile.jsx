@@ -12,12 +12,12 @@ import { useForm } from "react-hook-form";
 
 const validationSchema = Yup.object({
     username: Yup.string()
-        .required('El nombre de usuario es obligatorio')
-        .matches(/^[a-zA-Z0-9_]+$/, 'El nombre de usuario solo puede contener letras, números y guiones bajos')
-        .matches(/^\S*$/, 'El nombre de usuario no puede contener espacios en blanco')
-        .min(3, '¡Demasiado corto!')
-        .max(30, '¡Demasiado largo!'),
-    
+    .required('El nombre de usuario es obligatorio')
+    .matches(/^[a-z0-9_]+$/, 'El nombre de usuario solo puede contener letras minúsculas, números y guiones bajos')
+    .matches(/^\S*$/, 'El nombre de usuario no puede contener espacios en blanco')
+    .min(3, '¡Demasiado corto!')
+    .max(30, '¡Demasiado largo!'),
+
     fullName: Yup.string()
         .min(3, '¡Demasiado corto!')
         .max(63, '¡Demasiado largo!')
