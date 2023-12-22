@@ -16,8 +16,7 @@ export const ProfilePage = () => {
     return (
         <Container maxW={"container.lg"} py={5}>
             <Flex
-                py={10}
-                px={4}
+                p={4}
                 pl={{base: 4, md: 10}}
                 w={"full"}
                 mx={"auto"}
@@ -32,7 +31,6 @@ export const ProfilePage = () => {
                 maxH={"full"}
                 margin={"auto"}
                 borderTop={"1px solid"}
-                borderColor={"whiteAlpha.300"}
                 direction={"column"}
             >
                 <ProfileTabs />

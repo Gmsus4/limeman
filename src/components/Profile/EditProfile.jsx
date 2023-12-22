@@ -80,9 +80,9 @@ export const EditProfile = ({ isOpen, onClose }) => {
                     <ModalCloseButton />
                     <ModalBody>
                         {/* Container Flex */}
-                        <Flex bg={"whiteAlpha.900"}>
-                            <Stack spacing={4} w={"full"} maxW={"md"} bg={"whiteAlpha.900"} p={6} my={0}>
-                                <Heading color={"primary.100"} lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
+                        <Flex>
+                            <Stack spacing={4} w={"full"} maxW={"md"} p={6} my={0}>
+                                <Heading textAlign={"center"} color={"primary.100"} lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
                                     Edit Profile
                                 </Heading>
                                 <FormControl>

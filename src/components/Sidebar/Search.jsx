@@ -3,8 +3,9 @@ import { SearchLogo } from "../../assets/constants"
 import { useSearchUser } from "../../hooks/useSearchUser";
 import { useRef, useState } from "react";
 import { SuggestedUser } from "../SuggestedUsers/SuggestedUser";
+import { CiSearch } from "react-icons/ci";
 
-export const Search = () => {
+export const Search = ({color}) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const searchRef = useRef(null);
 	const { user, isLoading, getUserProfile, setUser } = useSearchUser();
@@ -39,7 +40,7 @@ export const Search = () => {
 				justifyContent={{ base: "center", md: "flex-start" }}
 				onClick={onOpen}
 			>
-				<SearchLogo />
+				<CiSearch fontSize={"30px"} color={color}/>
 				<Box color={"white"} display={{ base: "none", md: "block" }}>Search</Box>
 			</Flex>
 		</Tooltip>

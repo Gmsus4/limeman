@@ -11,8 +11,9 @@ import { useLocation } from "react-router-dom";
 import { addDoc, arrayUnion, collection, doc, updateDoc } from "firebase/firestore";
 import { firestore, storage } from "../../firebase/firebase";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { GoPlusCircle } from "react-icons/go";
 
-export const CreatePost = () => {
+export const CreatePost = ({color}) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [caption, setCaption] = useState("");
 	const imageRef = useRef(null);
@@ -51,7 +52,7 @@ export const CreatePost = () => {
 					justifyContent={{ base: "center", md: "flex-start" }}
 					onClick={onOpen}
 				>
-					<CreatePostLogo />
+					<GoPlusCircle color={color} fontSize={"30px"} />
 					<Box color={"white"} display={{ base: "none", md: "block" }}>Create</Box>
 				</Flex>
 			</Tooltip>
