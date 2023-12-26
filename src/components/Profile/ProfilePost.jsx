@@ -72,6 +72,7 @@ export const ProfilePost = ({post}) => {
           transition={"all 0.3s ease"}
           zIndex={1}
           justifyContent={"center"}
+          display={{base: 'none', md: 'flex'}}
         >
           <Flex alignItems={"center"} justifyContent={"center"} gap={50} >
             <Flex alignItems={"center"}>

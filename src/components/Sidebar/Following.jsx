@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, VStack, useDisclosure } from "@chakra-ui/react"
+import { Flex, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, VStack, useDisclosure } from "@chakra-ui/react"
 import { useAuthStore } from "../../store/authStore";
 import { useUserProfileStore } from "../../store/userProfileStore";
 import { SuggestedUser } from "../SuggestedUsers/SuggestedUser";
@@ -18,14 +18,14 @@ export const Following = () => {
 
   return (
 	<>
-		<Text cursor={"pointer"} fontSize={{base: "xs", md: "sm"}} onClick={onOpen}>
-			<Text as={"span"} fontWeight={"bold"} mr={1}>
-				{visitingOwnProfileAndAuth ? authUser.following.length : userProfile.following.length}
-				
-				{/*  {             userProfile.following.length} */}
+		<Flex flexDir={"column"} alignItems={"center"} onClick={onOpen} cursor={"pointer"}>
+			<Text as={"span"} fontWeight={"bold"} mr={1} fontSize={20}>
+			{visitingOwnProfileAndAuth ? authUser.following.length : userProfile.following.length}
 			</Text>
-			Following
-		</Text>
+			<Text fontSize={{base: "xs", md: "sm"}}>
+				Following
+			</Text>
+		</Flex>
 		<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>
 			<ModalOverlay />
 			<ModalContent maxW={"400px"}>

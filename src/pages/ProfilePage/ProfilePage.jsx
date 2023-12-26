@@ -5,6 +5,7 @@ import { ProfilePosts } from "../../components/Profile/ProfilePosts"
 import { useParams } from "react-router-dom"
 import { useGetUserProfileByUsername } from "../../hooks/useGetUserProfileByUsername"
 import { Link as RouterLink } from "react-router-dom";
+import { ProfileHeaderMin } from "../../components/Profile/ProfileHeaderMin"
 
 export const ProfilePage = () => {
     const { username } = useParams();
@@ -14,7 +15,7 @@ export const ProfilePage = () => {
     if(userNotFound) return <UserNotFound /> //Si el username no esta en la base de datos entonces muestra un not - found
 
     return (
-        <Container maxW={"container.lg"} py={5}>
+        <Container maxW={"container.lg"}  p={{base: 0, md: 5}}>
             <Flex
                 p={4}
                 pl={{base: 4, md: 10}}
@@ -23,7 +24,8 @@ export const ProfilePage = () => {
                 flexDirection={"column"}
                 alignItems={"center"}
             >
-                {!isLoading && userProfile && <ProfileHeader />}
+                {/* {!isLoading && userProfile && <ProfileHeader />} */}
+                {!isLoading && userProfile && <ProfileHeaderMin />}
 				{isLoading && <ProfileHeaderSkeleton />}
             </Flex>
             <Flex 

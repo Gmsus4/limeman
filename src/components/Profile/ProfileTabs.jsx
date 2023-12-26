@@ -10,7 +10,7 @@ export const ProfileTabs = () => {
       textTransform={"uppercase"}
       fontWeight={"bold"}
     >
-      <Flex mb={2} w={"full"} alignItems={"center"} p={3} gap={2} cursor={"pointer"} justifyContent={"center"}>
+      <Flex mb={2} w={"full"} alignItems={"center"} p={{base: 1, md: 3}} gap={2} cursor={"pointer"} justifyContent={"center"}>
         <Text color={"primary.100"} fontSize={12} display={{base: "none", sm: "block"}}>Posts</Text>
       </Flex>
     </Flex>

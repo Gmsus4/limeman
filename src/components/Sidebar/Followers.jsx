@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, VStack, useDisclosure } from "@chakra-ui/react";
+import { Flex, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, VStack, useDisclosure } from "@chakra-ui/react";
 import { useAuthStore } from "../../store/authStore";
 import { useUserProfileStore } from "../../store/userProfileStore";
 import { useGetFollowers } from "../../hooks/useGetFollowers";
@@ -19,16 +19,14 @@ export const Followers = () => {
 
   return (
 	<>
-		<Text cursor={"pointer"} fontSize={{base: "xs", md: "sm"}} onClick={onOpen}>
-			<Text as={"span"} fontWeight={"bold"} mr={1}>
-                {/* {visitingOwnProfileAndAuth ? authUser.followers.length : userProfile.followers.length} */}
-
-
-                {visitingOwnProfileAndAuth ? authUser.followers.length : userProfile.followers.length}
-                {/* {visitingAnotherProfileAndAuth && userProfile.followers.length} */}
+		<Flex flexDir={"column"} alignItems={"center"} onClick={onOpen} cursor={"pointer"}>
+			<Text as={"span"} fontWeight={"bold"} mr={1} fontSize={20}>
+				{visitingOwnProfileAndAuth ? authUser.followers.length : userProfile.followers.length}
 			</Text>
-			Followers
-		</Text>
+			<Text fontSize={{base: "xs", md: "sm"}}>
+				Followers
+			</Text>
+		</Flex>
 
 		<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>
 			<ModalOverlay />
