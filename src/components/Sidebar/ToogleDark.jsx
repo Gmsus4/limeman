@@ -13,16 +13,9 @@ export const ToogleDark = () => {
             w={{ base: 10, md: "full" }}
             justifyContent={{ base: "center", md: "flex-start" }}
         >
-            <Button onClick={toggleColorMode}>
-                <Flex alignItems={"center"} gap={2}>
-                    {/* <Flex display={{ base: "none", md: "block" }}>
-                        Toggle {colorMode === 'light' ? 'Dark' : 'Light'} 
-                    </Flex> */}
-                    <Flex>
-                        {colorMode === 'light' ? <CiDark fontSize={"30px"} /> :  <CiLight fontSize={"30px"}/>} 
-                    </Flex>
-                </Flex>
-            </Button>
+            <Flex alignItems={"center"} gap={2} onClick={toggleColorMode}>
+                {colorMode === 'light' ? <CiDark fontSize={"30px"} /> :  <CiLight fontSize={"30px"}/>} 
+            </Flex>
         </Flex>
   )
 }

@@ -3,6 +3,8 @@ import { useUserProfileStore } from "../../store/userProfileStore"
 import { useAuthStore } from "../../store/authStore";
 import { EditProfile } from "./EditProfile";
 import { useFollowUser } from "../../hooks/useFollowUser";
+import { Following } from "../Sidebar/Following";
+import { Followers } from "../Sidebar/Followers";
 
 export const ProfileHeader = () => {
     const {userProfile} = useUserProfileStore();
@@ -51,7 +53,7 @@ export const ProfileHeader = () => {
                             isLoading={isUpdating}
                         >
                             {isFollowing ? "Unfollow" : "Follow"}
-                        </Button>
+                        </Button> 
                     </Flex>
                 )}
             </Flex>
@@ -62,20 +64,8 @@ export const ProfileHeader = () => {
                     </Text>
                     Posts
                 </Text>
-                <Text fontSize={{base: "xs", md: "sm"}}>
-                    <Text as={"span"} fontWeight={"bold"} mr={1}>
-                        {visitingOwnProfileAndAuth ? authUser.followers.length : userProfile.followers.length}
-                        {/* {userProfile.followers.length} */}
-                    </Text>
-                    Followers
-                </Text>
-                <Text fontSize={{base: "xs", md: "sm"}}>
-                    <Text as={"span"} fontWeight={"bold"} mr={1}>
-                        {visitingOwnProfileAndAuth ? authUser.following.length : userProfile.following.length}
-                        {/* {userProfile.following.length} */}
-                    </Text>
-                    Following
-                </Text>
+                <Followers />
+                <Following />
             </Flex>
             <Flex alignItems={"center"} gap={4}>
                 <Text fontSize={"sm"} fontWeight={"bold"}>

@@ -27,7 +27,7 @@ export const useGetUserProfileByUsername = (username) => {
           });
 
           setUserProfile(userDoc); //Establece el userProfile con los datos del usuario (El usuario buscado mediante su username en el path)
-          console.log(userDoc)
+          //console.log(userDoc)
 
         } catch (error) {
             showToast('error', error.message, 'error');

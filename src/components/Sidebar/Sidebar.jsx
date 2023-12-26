@@ -52,7 +52,7 @@ export const Sidebar = () => {
                             <CreatePost />   
                         </MenuItem>
                         <MenuItem>
-                            <Button 
+                            <Flex 
                                 w={"full"}
                                 ml={1}
                                 gap={5}
@@ -61,7 +61,7 @@ export const Sidebar = () => {
                             >
                                 <BiLogOut size={25}/>
                                 Logout
-                            </Button>
+                            </Flex>
                         </MenuItem>
                     </MenuGroup>
                 </MenuList>

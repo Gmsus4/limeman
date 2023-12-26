@@ -1,20 +1,13 @@
 import { Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Tooltip, VStack, useDisclosure } from "@chakra-ui/react"
 import { useSearchUser } from "../../hooks/useSearchUser";
-import { useRef, useState } from "react";
 import { SuggestedUser } from "../SuggestedUsers/SuggestedUser";
 import { ImAddressBook } from "react-icons/im";
 import { useGetSuggestedUsers } from "../../hooks/useGetSuggestedUsers";
 
 export const Suggested = ({color}) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const searchRef = useRef(null);
-	const { user, isLoading, getUserProfile, setUser } = useSearchUser();
-  const {isLoad, suggestedUsers} = useGetSuggestedUsers();
-
-	const handleSearchUser = (e) => {
-		e.preventDefault();
-		getUserProfile(searchRef.current.value);
-	};
+	const { setUser } = useSearchUser();
+  const { suggestedUsers } = useGetSuggestedUsers();
 
 	const handleClose = () => {
 		onClose();
@@ -52,11 +45,11 @@ export const Suggested = ({color}) => {
 				<ModalHeader color={"primary.100"}>Suggested for you</ModalHeader>
 				<ModalCloseButton/>
 				<ModalBody pb={6}>    
-        <VStack w={"full"} alignItems={"start"} maxH={"350px"} overflowY={"auto"}>      
-          {suggestedUsers.map(user => (
-              <SuggestedUser user={user} key={user.id}/>
-          ))}
-        </VStack>
+					<VStack w={"full"} alignItems={"start"} maxH={"350px"} overflowY={"auto"}>      
+					{suggestedUsers.map(user => (
+						<SuggestedUser user={user} key={user.id}/>
+					))}
+					</VStack>
 				</ModalBody>
 			</ModalContent>
 		</Modal>

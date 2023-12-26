@@ -5,7 +5,7 @@ import { timeAgo } from "../../utils/timeAgo"
 
 export const PostHeader = ({post, creatorProfile}) => {
   const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(post.createdBy)
-  console.log(creatorProfile)
+  //console.log(creatorProfile)
   return (
     <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}> {/* my={2} */}
         <Flex alignItems={"center"} gap={2}>
