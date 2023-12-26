@@ -2,7 +2,7 @@ import { Button, Flex, Tooltip, useColorMode } from "@chakra-ui/react"
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
 
-export const ToogleDark = () => {
+export const ToogleDark = ({color}) => {
     const { colorMode, toggleColorMode } = useColorMode()
   return(
         <Flex
@@ -14,7 +14,7 @@ export const ToogleDark = () => {
             justifyContent={{ base: "center", md: "flex-start" }}
         >
             <Flex alignItems={"center"} gap={2} onClick={toggleColorMode}>
-                {colorMode === 'light' ? <CiDark fontSize={"30px"} /> :  <CiLight fontSize={"30px"}/>} 
+                {colorMode === 'light' ? <CiDark color={color} fontSize={"30px"} /> :  <CiLight color={color} fontSize={"30px"}/>} 
             </Flex>
         </Flex>
   )

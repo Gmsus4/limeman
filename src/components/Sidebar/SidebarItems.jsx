@@ -10,7 +10,7 @@ export const SidebarItems = () => {
   return (
     <>
         {/* <Home /> */}
-        <ToogleDark />
+        <ToogleDark color={'white'}/>
         <Suggested color={'white'}/>
         <Search color={'white'}/>
         {/* <Notifications /> */}

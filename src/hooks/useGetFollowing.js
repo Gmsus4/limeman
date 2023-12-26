@@ -4,7 +4,7 @@ import { useAuthStore } from "../store/authStore";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 
-export const useGetFollowing = () => {
+export const useGetFollowing = (user) => {
     const [isLoading, setIsLoading] = useState(true);
 	const [followingUsers, setFollowingUsers] = useState([]);
     const authUser = useAuthStore((state) => state.user);
@@ -13,9 +13,9 @@ export const useGetFollowing = () => {
         const getFollowingUsers = async () => {
             setIsLoading(true);
             try {
-                if (authUser && authUser.following && authUser.following.length > 0) {
+                if (user && user.following && user.following.length > 0) {
                     const usersRef = collection(firestore, "users");
-                    const q = query(usersRef, where("uid", "in", authUser.following));
+                    const q = query(usersRef, where("uid", "in", user.following));
 
                     const querySnapshot = await getDocs(q);
                     const followingUsers = [];

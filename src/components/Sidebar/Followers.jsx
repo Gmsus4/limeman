@@ -13,15 +13,19 @@ export const Followers = () => {
 	const visitingOwnProfileAndAuth = authUser && authUser.username === userProfile.username;
     const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username;
 
-	const { followersUsers } = useGetFollowers();
+	const user = visitingOwnProfileAndAuth ? authUser : userProfile;
+
+	const { followersUsers } = useGetFollowers(user);
 
   return (
 	<>
 		<Text cursor={"pointer"} fontSize={{base: "xs", md: "sm"}} onClick={onOpen}>
 			<Text as={"span"} fontWeight={"bold"} mr={1}>
                 {/* {visitingOwnProfileAndAuth ? authUser.followers.length : userProfile.followers.length} */}
-                {visitingOwnProfileAndAuth && authUser.followers.length}
-                {visitingAnotherProfileAndAuth && userProfile.followers.length}
+
+
+                {visitingOwnProfileAndAuth ? authUser.followers.length : userProfile.followers.length}
+                {/* {visitingAnotherProfileAndAuth && userProfile.followers.length} */}
 			</Text>
 			Followers
 		</Text>
@@ -32,7 +36,7 @@ export const Followers = () => {
 				<ModalHeader color={"primary.100"}>Followers</ModalHeader>
 				<ModalCloseButton/>
 				<ModalBody pb={6}>    
-					<VStack w={"full"} alignItems={"start"} maxH={"350px"} overflowY={"auto"}>    
+					<VStack w={"full"} alignItems={"start"} maxH={"350px"} overflowY={"auto"}>
 					{followersUsers.length > 0 ? (
 						followersUsers?.map((user, idx) => (
 							<SuggestedUser user={user} key={idx} />

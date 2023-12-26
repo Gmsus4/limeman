@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, Tooltip, VStack, useDisclosure } from "@chakra-ui/react"
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, VStack, useDisclosure } from "@chakra-ui/react"
 import { useAuthStore } from "../../store/authStore";
 import { useUserProfileStore } from "../../store/userProfileStore";
 import { SuggestedUser } from "../SuggestedUsers/SuggestedUser";
@@ -12,7 +12,9 @@ export const Following = () => {
 
 	const visitingOwnProfileAndAuth = authUser && authUser.username === userProfile.username;
 
-	const { followingUsers } = useGetFollowing();
+	const user = visitingOwnProfileAndAuth ? authUser : userProfile;
+
+	const { followingUsers } = useGetFollowing(user);
 
   return (
 	<>
