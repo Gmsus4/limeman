@@ -17,7 +17,7 @@ export const ProfilePostsViews = () => {
   return (
     <Container className="hollaaa" maxW={"container.sm"} px={2} >
       <Flex my={4} mb={6} mx={4} alignItems={"center"} gap={4}>
-        <BsArrowLeft fontSize={"26px"} onClick={() => navigate(-1)} cursor={"pointer"}/>
+        <BsArrowLeft fontSize={"26px"} onClick={() => navigate(`/${username}`)} cursor={"pointer"}/>
         <Text fontSize={"26px"}>Posts</Text>
       </Flex>
       {isLoading && 

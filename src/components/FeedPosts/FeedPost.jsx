@@ -8,11 +8,14 @@ export const FeedPost = ({post}) => {
   return (
     <>
       <Flex flexDir={"column"} m={0} mb={"30px"} p={0}>
-            <PostHeader post={post} creatorProfile={userProfile} />
-            <Box my={4} borderRadius={10} overflow={"hidden"}>
-                <Image w={"full"} src={post.imageURL} /* alt={post.username} *//>
-            </Box>
-            <PostFooter post={post} creatorProfile={userProfile}/>
+        <PostHeader post={post} creatorProfile={userProfile} />
+        <Box borderRadius={10} overflow={"hidden"} aspectRatio={"1 / 1"} m={"auto"} my={4} w={"100%"} h={"100%"}>
+            <Image w={"full"} h={"full"} src={post.imageURL}                
+              objectFit={"cover"}  
+              objectPosition={"center"}
+            />
+        </Box>
+        <PostFooter post={post} creatorProfile={userProfile}/>
       </Flex>
     </>
   )

@@ -30,26 +30,26 @@ export const PostFooter = ({post, isProfilePage, creatorProfile}) => {
           <CommentLogo/>
         </Box>
       </Flex>
-      <Text fontWeight={600} fontSize={"sm"} ml={2}>
+      <Text fontWeight={600} fontSize={"sm"} ml={{base: 2, md: 0}}>
         {likes} likes
       </Text>
       
       {/* El prop isProfilePage parece estar diseñado para controlar el comportamiento del componente PostFooter basado en si la página actual es la página de perfil de un usuario. Si está obteniendo true solo cuando entra en la página del post y no en otras páginas, podría haber varias razones: */}
       {isProfilePage && (
-        <Text fontSize="12" color={"gray"} ml={2}>
+        <Text fontSize="12" color={"gray"} ml={{base: 2, md: 0}}>
           Posted {timeAgo(post.createdAt)}
         </Text>
       )}
 			{!isProfilePage && (
 				<>
-					<Text fontSize='sm' fontWeight={700} ml={2}>
+					<Text fontSize='sm' fontWeight={700} ml={{base: 2, md: 0}}>
 						{creatorProfile?.username}{" "}
 						<Text as='span' fontWeight={400}>
 							{post.caption}
 						</Text>
 					</Text>
 					{post.comments.length > 0 && (
-						<Text fontSize='sm' color={"gray"} cursor={"pointer"} onClick={onOpen} ml={2}>
+						<Text fontSize='sm' color={"gray"} cursor={"pointer"} onClick={onOpen} ml={{base: 2, md: 0}}>
 							View all {post.comments.length} comments
 						</Text>
 					)}
@@ -63,9 +63,8 @@ export const PostFooter = ({post, isProfilePage, creatorProfile}) => {
           gap={2}
           justifyContent={"space-between"}
           w={"full"}
-          ml={2}
         >
-          <InputGroup>
+          <InputGroup w={{base: "97%", md: 'full'}} m={"auto"}>
             <Input variant={"flushed"} placeholder="Add a comment..." fontSize={14} 
               onChange={(e) => setComment(e.target.value)}
               value={comment}
