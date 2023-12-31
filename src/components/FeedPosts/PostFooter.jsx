@@ -6,6 +6,7 @@ import { useAuthStore } from "../../store/authStore"
 import { useLikePost } from "../../hooks/useLikePost"
 import { timeAgo } from "../../utils/timeAgo"
 import { CommentsModal } from "../Modals/CommentsModals"
+import { DeletePost } from "../Profile/DeletePost"
 
 export const PostFooter = ({post, isProfilePage, creatorProfile}) => {
   const {isCommenting, handlePostComment} = usePostsComment();
@@ -22,13 +23,16 @@ export const PostFooter = ({post, isProfilePage, creatorProfile}) => {
 
   return (
     <Box mb={10} marginTop={"auto"} marginBottom={2}>
-      <Flex alignItems={"center"} gap={4} w={"80px"} pt={0} mb={2} bg={"primary.100"} justifyContent={"start"} p={2} borderRadius={20}>
-        <Box onClick={handleLikePost} cursor={"pointer"} fontSize={18} >
-          {!isLiked ? (<NotificationsLogo />) : (<UnlikeLogo />)}
-        </Box>
-        <Box cursor={"pointer"} fontSize={18} onClick={()=> commentRef.current.focus()}>
-          <CommentLogo/>
-        </Box>
+      <Flex alignItems={"center"} justifyContent={"space-between"}>
+        <Flex justifyContent={"start"} alignItems={"center"} gap={4} w={"80px"} pt={0} mb={2} bg={"primary.100"} p={2} borderRadius={20}>
+          <Box onClick={handleLikePost} cursor={"pointer"} fontSize={18} >
+            {!isLiked ? (<NotificationsLogo />) : (<UnlikeLogo />)}
+          </Box>
+          <Box cursor={"pointer"} fontSize={18} onClick={()=> commentRef.current.focus()}>
+            <CommentLogo/>
+          </Box>
+        </Flex>
+        <DeletePost post={post}/>
       </Flex>
       <Text fontWeight={600} fontSize={"sm"} ml={{base: 2, md: 0}}>
         {likes} likes
