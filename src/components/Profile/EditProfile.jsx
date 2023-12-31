@@ -61,6 +61,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                     setSelectedFile(null);
                     onClose();
                     data.username && navigate(`/${data.username}`);
+                    console.log(data);
                 } else{
                     //Si el valor del username autenticado es diferente al de la busqueda entones quiere decir que ese username ya existe
                     showToast('Error', 'Username already exists', 'error');

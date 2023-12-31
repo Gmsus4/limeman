@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import {devtools} from 'zustand/middleware';
 
-export const useUserProfileStore = create(devtools((set) => ({
+export const useUserProfileStore = create((set) => ({
 	userProfile: null,
 	setUserProfile: (userProfile) => set({ userProfile }),
 	// this is used to update the number of posts in the profile page
@@ -17,7 +17,7 @@ export const useUserProfileStore = create(devtools((set) => ({
 			posts: state.userProfile.posts.filter((id) => id !== postId),
 		}
 	}))
-})));
+}));
 
 //Los datos del usuario, tan solo con el path 
 
