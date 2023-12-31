@@ -1,10 +1,12 @@
-import { Box, Flex, Image } from "@chakra-ui/react"
+import { Box, Flex, Image, useDisclosure } from "@chakra-ui/react"
 import { PostHeader } from "./PostHeader"
 import { PostFooter } from "./PostFooter"
 import { useGetUserProfileById } from "../../hooks/useGetUserProfileById"
+import { ViewFullImage } from "../Profile/ViewFullImage"
 
 export const FeedPost = ({post}) => {
   const { userProfile } = useGetUserProfileById(post.createdBy);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Flex flexDir={"column"} m={0} mb={"30px"} p={0}>
@@ -13,7 +15,9 @@ export const FeedPost = ({post}) => {
             <Image w={"full"} h={"full"} src={post.imageURL}                
               objectFit={"cover"}  
               objectPosition={"center"}
+              onClick={onOpen}
             />
+            <ViewFullImage post={post} isOpen={isOpen} onClose={onClose}/>
         </Box>
         <PostFooter post={post} creatorProfile={userProfile}/>
       </Flex>
