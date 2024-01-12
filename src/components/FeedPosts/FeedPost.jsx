@@ -7,6 +7,8 @@ import { ViewFullImage } from "../Profile/ViewFullImage"
 export const FeedPost = ({post}) => {
   const { userProfile } = useGetUserProfileById(post.createdBy);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  // console.log('los posts');
+  //console.log(post);
   return (
     <>
       <Flex flexDir={"column"} m={0} mb={"30px"} p={0}>
@@ -16,6 +18,7 @@ export const FeedPost = ({post}) => {
               objectFit={"cover"}  
               objectPosition={"center"}
               onClick={onOpen}
+              cursor={"pointer"}
             />
             <ViewFullImage post={post} isOpen={isOpen} onClose={onClose}/>
         </Box>
