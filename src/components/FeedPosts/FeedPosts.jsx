@@ -12,7 +12,6 @@ export const FeedPosts = () => {
   const { userProfile } = useGetUserProfileById('oMJP4jMzScXWt9In70bTGEPU0tA2');
   // console.log('userProfile:')
   // console.log(userProfile)
-  //"Se agregó al usuario admin al inicio de los posts con direccion a Instagram real xd
   const postUserAdmin = {
     createdBy: 'oMJP4jMzScXWt9In70bTGEPU0tA2'
   }
