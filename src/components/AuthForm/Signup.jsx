@@ -13,8 +13,8 @@ const validationSchema = Yup.object({ //SOLO LOS SCHEMA NECESARIOS PARA LA VALID
 
     username: Yup.string()
     .required('El nombre de usuario es obligatorio') // Asegura que el campo no esté vacío
-    .matches(/^[a-zA-Z0-9_]+$/, 'El nombre de usuario solo puede contener letras, números y guiones bajos') // Verifica que el username contenga solo letras, números y guiones bajos
-    .matches(/^\S*$/, 'El nombre de usuario no puede contener espacios en blanco') // Asegura que no haya espacios en blanco
+    .matches(/^[a-z0-9_]+$/, 'El nombre de usuario solo puede contener letras minúsculas, números y guiones bajos')
+    .matches(/^\S*$/, 'El nombre de usuario no puede contener espacios en blanco')
     .min(3, '¡Demasiado corto!') // Verifica que el nombre tenga al menos 2 caracteres
     .max(30, '¡Demasiado largo!'), // Verifica que el nombre no exceda los 50 caracteres
         

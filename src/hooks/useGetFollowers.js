@@ -6,37 +6,49 @@ import { firestore } from "../firebase/firebase";
 
 export const useGetFollowers = (user) => {
     const [isLoading, setIsLoading] = useState(true);
-	const [followersUsers, setFollowersUsers] = useState([]);
+    const [followersUsers, setfollowersUsers] = useState([]);
     const authUser = useAuthStore((state) => state.user);
-	const showToast = useShowToast();
+    const showToast = useShowToast();
+
     useEffect(() => {
-        const getFollowersUsers = async () => {
+        const getFollowingUsers = async () => {
             setIsLoading(true);
-            //console.log(user)
+
             try {
                 if (user && user.followers && user.followers.length > 0) {
                     const usersRef = collection(firestore, "users");
-                    const q = query(usersRef, where("uid", "in", user.followers));
+                    const followersUsers = [];
 
-                    const querySnapshot = await getDocs(q);
-                    const followersUsersArray = [];
+                    // Divide user.following en segmentos de 30 usuarios por consulta
+                    const segmentSize = 30;
+                    const totalSegments = Math.ceil(user.followers.length / segmentSize);
 
-                    querySnapshot.forEach((doc) => {
-                        followersUsersArray.push({ ...doc.data(), id: doc.id });
-                    });
+                    for (let i = 0; i < totalSegments; i++) {
+                        const startIdx = i * segmentSize;
+                        const endIdx = (i + 1) * segmentSize;
+                        const segment = user.followers.slice(startIdx, endIdx);
 
-                    setFollowersUsers(followersUsersArray);
+                        const q = query(usersRef, where("uid", "in", segment));
+                        const querySnapshot = await getDocs(q);
+
+                        querySnapshot.forEach((doc) => {
+                            followersUsers.push({ ...doc.data(), id: doc.id });
+                        });
+                    }
+
+                    setfollowersUsers(followersUsers);
                 } else {
-                    setFollowersUsers([]); // Manejo cuando authUser.following está vacío o no es un array válido
+                    setfollowersUsers([]);
                 }
             } catch (error) {
-                showToast('error', error.message, 'error')
+                showToast('error', error.message, 'error');
             } finally {
                 setIsLoading(false);
             }
-        }
-    
-        if (authUser) getFollowersUsers();
-    }, [authUser, showToast])
-  return {isLoading, followersUsers}
-}
+        };
+
+        if (authUser) getFollowingUsers();
+    }, [authUser, showToast]);
+
+    return { isLoading, followersUsers };
+};
